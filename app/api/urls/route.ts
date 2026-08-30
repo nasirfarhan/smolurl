@@ -1,3 +1,4 @@
+import { shortenUrl } from "@/app/services/url.service";
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
@@ -13,10 +14,13 @@ export async function POST(request: Request) {
       );
     }
 
+    const result = await shortenUrl(url)
+
     return NextResponse.json(
       {
-        message: "URL received",
-        url,
+       id : result.id,
+       originalUrl : result.url ,
+       shortCode : result.shortCode
       },
       { status: 201 }
     );
