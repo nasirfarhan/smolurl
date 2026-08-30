@@ -19,12 +19,13 @@ export async function POST(request: Request) {
     return NextResponse.json(
       {
        id : result.id,
-       originalUrl : result.url ,
+       originalUrl : result.originalUrl ,
        shortCode : result.shortCode
       },
       { status: 201 }
     );
-  } catch {
+  } catch(error) {
+     console.error("API ERROR:", error);
     return NextResponse.json(
       { error: "Invalid request" },
       { status: 400 }
