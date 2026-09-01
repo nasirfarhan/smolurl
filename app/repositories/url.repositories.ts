@@ -10,7 +10,7 @@ export async function createUrl(originalUrl:string , shortCode:string ) {
 }
 
 export async function findUrlByShortCode(shortCode: string){
-    const originalUrl = await db.url.findUinique({
+    return db.url.findUnique({
         where: {
             shortCode
         }
