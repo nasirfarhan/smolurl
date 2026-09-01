@@ -15,12 +15,14 @@ export async function POST(request: Request) {
     }
 
     const result = await shortenUrl(url)
+    const shortUrl = `${new URL(request.url).origin}/${result.shortCode}`
 
     return NextResponse.json(
       {
        id : result.id,
        originalUrl : result.originalUrl ,
-       shortCode : result.shortCode
+       shortCode : result.shortCode,
+       shortUrl,
       },
       { status: 201 }
     );
